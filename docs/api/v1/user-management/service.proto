@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package v1.user.management;
+
+option go_package = "./api/v1/user-management;usermanagement";
+
+import "google/api/annotations.proto";
+
+service UserManagementService {
+  rpc Register (RegisterRequest) returns (RegisterResponse) {
+    option (google.api.http) = {
+      post: "/v1/user/register"
+      body: "*"
+    };
+  }
+  rpc Login (LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/v1/user/login"
+      body: "*"
+    };
+  }
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/profile"
+    };
+  }
+  rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileRequest) {
+    option (google.api.http) = {
+      put: "/v1/user/profile"
+      body: "*"
+    };
+  }
+  rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse) {
+    option (google.api.http) = {
+      put: "/v1/user/update-password"
+      body: "*"
+    };
+  }
+  rpc VerifyOTP(VerifyOTPRequest) returns (VerifyOTPResponse) {
+    option (google.api.http) = {
+      put: "/v1/user/verify-otp"
+      body: "*"
+    };
+  }
+  rpc GetPaymentMethod(GetPaymentMethodRequest) returns (GetPaymentMethodResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/payment-method"
+    };
+  }
+}
+
+message RegisterRequest {
+
+}
+
+message RegisterResponse {
+
+}
+
+message LoginRequest {
+
+}
+
+message LoginResponse {
+
+}
+
+message GetProfileRequest {
+
+}
+
+message GetProfileResponse {
+
+}
+
+message UpdateProfileRequest {
+
+}
+
+message UpdateProfileResponse {
+
+}
+
+message UpdatePasswordRequest {
+
+}
+
+message UpdatePasswordResponse {
+
+}
+
+message VerifyOTPRequest {
+
+}
+
+message VerifyOTPResponse {
+
+}
+
+message GetPaymentMethodRequest {
+
+}
+
+message GetPaymentMethodResponse {
+  
+}

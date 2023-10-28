@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package v1.user.management;
+
+option go_package = "./api/v1/user-management;usermanagement";
+
+message UserData {
+    string user_id = 1;
+    string email = 2;
+    string phone = 3;
+    
+}

@@ -1,0 +1,651 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/v1/booking-system/service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "BookingSystemService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/booking/book": {
+      "post": {
+        "operationId": "BookingSystemService_Book",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemBookResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/systemBookRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    },
+    "/v1/booking/cancel": {
+      "put": {
+        "operationId": "BookingSystemService_Cancel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemCancelRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/systemCancelRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    },
+    "/v1/booking/confirm-arrival": {
+      "put": {
+        "operationId": "BookingSystemService_ConfirmArrival",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemConfirmArrivalRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/systemConfirmArrivalRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    },
+    "/v1/booking/confirm-complete": {
+      "put": {
+        "operationId": "BookingSystemService_ConfirmComplete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemConfirmCompleteRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/systemConfirmCompleteRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    },
+    "/v1/booking/confirm-receipt": {
+      "put": {
+        "operationId": "BookingSystemService_ConfirmReceipt",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemConfirmReceiptRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/systemConfirmReceiptRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    },
+    "/v1/booking/history": {
+      "get": {
+        "operationId": "BookingSystemService_GetBookingHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemGetBookingHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    },
+    "/v1/booking/recent": {
+      "get": {
+        "operationId": "BookingSystemService_GetRecentBooking",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemGetRecentBookingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    },
+    "/v1/booking/scheduled/book": {
+      "post": {
+        "operationId": "BookingSystemService_ScheduledBook",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemScheduledBookResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/systemScheduledBookRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    },
+    "/v1/booking/status/{booking_id}": {
+      "get": {
+        "operationId": "BookingSystemService_GetBookingStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemGetBookingStatusResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    },
+    "/v1/booking/vehicle-pricing": {
+      "get": {
+        "operationId": "BookingSystemService_GetVehiclePricing",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemGetVehiclePricingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    },
+    "/v1/booking/{booking_id}": {
+      "get": {
+        "operationId": "BookingSystemService_GetBooking",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemGetBookingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "booking_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BookingSystemService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddressGeometry": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "$ref": "#/definitions/systemAddressLocation"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "systemAddress": {
+      "type": "object",
+      "properties": {
+        "formatted": {
+          "type": "string"
+        },
+        "geometry": {
+          "$ref": "#/definitions/AddressGeometry"
+        },
+        "place_id": {
+          "type": "string"
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/systemAddressType"
+          }
+        }
+      }
+    },
+    "systemAddressLocation": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "float"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "systemAddressType": {
+      "type": "string",
+      "enum": [
+        "ADDRESS_TYPE_UNSPECIFIED",
+        "ADDRESS_TYPE_STREET_ADDRESS"
+      ],
+      "default": "ADDRESS_TYPE_UNSPECIFIED"
+    },
+    "systemBookRequest": {
+      "type": "object",
+      "properties": {
+        "pickup_address": {
+          "$ref": "#/definitions/systemAddress"
+        },
+        "destination_address": {
+          "$ref": "#/definitions/systemAddress"
+        },
+        "trip_fare": {
+          "type": "number",
+          "format": "float"
+        },
+        "payment_method": {
+          "$ref": "#/definitions/systemPaymentMethod"
+        }
+      }
+    },
+    "systemBookResponse": {
+      "type": "object",
+      "properties": {
+        "booking_data": {
+          "$ref": "#/definitions/systemBookingData"
+        }
+      }
+    },
+    "systemBookingData": {
+      "type": "object",
+      "properties": {
+        "booking_id": {
+          "type": "string"
+        },
+        "customer_id": {
+          "type": "string"
+        },
+        "driver_id": {
+          "type": "string"
+        },
+        "call_center_id": {
+          "type": "string"
+        },
+        "pickup_address": {
+          "$ref": "#/definitions/systemAddress"
+        },
+        "destination_address": {
+          "$ref": "#/definitions/systemAddress"
+        },
+        "trip_fare": {
+          "type": "number",
+          "format": "float"
+        },
+        "pickup_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "booking_status": {
+          "$ref": "#/definitions/systemBookingStatus"
+        },
+        "payment_method": {
+          "$ref": "#/definitions/systemPaymentMethod"
+        },
+        "booking_source": {
+          "$ref": "#/definitions/systemBookingSource"
+        },
+        "created_time": {
+          "type": "string",
+          "format": "int64"
+        },
+        "update_time": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "systemBookingSource": {
+      "type": "string",
+      "enum": [
+        "BOOKING_SOURCE_UNSPECIFIED",
+        "BOOKING_SOURCE_CUSTOMER",
+        "BOOKING_SOURCE_CALL_CENTER"
+      ],
+      "default": "BOOKING_SOURCE_UNSPECIFIED"
+    },
+    "systemBookingStatus": {
+      "type": "string",
+      "enum": [
+        "BOOKING_STATUS_UNSPECIFIED",
+        "BOOKING_CREATING",
+        "BOOKING_CREATED",
+        "BOOKING_CREATE_ERROR",
+        "BOOKING_PROCESSING",
+        "BOOKING_CONFIRM_ARRIVAL",
+        "BOOKING_CONFIRM_ARRIVAL_ERROR",
+        "BOOKING_DRIVER_IN_COMMING",
+        "BOOKING_DRIVER_CANCELED",
+        "BOOKING_DRIVER_PICKUP",
+        "BOOKING_DRIVER_COMPLETE",
+        "BOOKING_CANCELED"
+      ],
+      "default": "BOOKING_STATUS_UNSPECIFIED"
+    },
+    "systemCancelRequest": {
+      "type": "object",
+      "properties": {
+        "booking_id": {
+          "type": "string"
+        }
+      }
+    },
+    "systemConfirmArrivalRequest": {
+      "type": "object",
+      "properties": {
+        "booking_id": {
+          "type": "string"
+        }
+      },
+      "title": "driver confirm so driver_id from session"
+    },
+    "systemConfirmCompleteRequest": {
+      "type": "object",
+      "properties": {
+        "booking_id": {
+          "type": "string"
+        }
+      }
+    },
+    "systemConfirmReceiptRequest": {
+      "type": "object",
+      "properties": {
+        "booking_id": {
+          "type": "string"
+        }
+      }
+    },
+    "systemGetBookingHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/systemBookingData"
+          }
+        }
+      }
+    },
+    "systemGetBookingResponse": {
+      "type": "object",
+      "properties": {
+        "booking_data": {
+          "$ref": "#/definitions/systemBookingData"
+        }
+      }
+    },
+    "systemGetBookingStatusResponse": {
+      "type": "object",
+      "properties": {
+        "booking_status": {
+          "$ref": "#/definitions/systemBookingStatus"
+        }
+      }
+    },
+    "systemGetRecentBookingResponse": {
+      "type": "object",
+      "properties": {
+        "recent_detinations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "systemGetVehiclePricingResponse": {
+      "type": "object"
+    },
+    "systemPaymentMethod": {
+      "type": "string",
+      "enum": [
+        "PAYMENT_METHOD_UNSPECIFIED",
+        "PAYMENT_METHOD_CASH_ON_HAND",
+        "PAYMENT_METHOD_BANK_ACCOUNT",
+        "PAYMENT_METHOD_BANK_CARD",
+        "PAYMENT_METHOD_ZALOPAY_WALLET",
+        "PAYMENT_METHOD_MOMO_WALLET"
+      ],
+      "default": "PAYMENT_METHOD_UNSPECIFIED"
+    },
+    "systemScheduledBookRequest": {
+      "type": "object",
+      "properties": {
+        "pickup_address": {
+          "type": "string"
+        },
+        "destination_address": {
+          "type": "string"
+        },
+        "trip_fare": {
+          "type": "number",
+          "format": "float"
+        },
+        "payment_method": {
+          "$ref": "#/definitions/systemPaymentMethod"
+        },
+        "pickup_time": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "systemScheduledBookResponse": {
+      "type": "object",
+      "properties": {
+        "booking_data": {
+          "$ref": "#/definitions/systemBookingData"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+version: v1
+plugins:
+  - plugin: buf.build/grpc-ecosystem/openapiv2:v2.18.0
+    out: openapi
+    opt:
+      - json_names_for_fields=false
+      - allow_repeated_fields_in_body=true

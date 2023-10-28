@@ -1,0 +1,285 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/v1/user-management/service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "UserManagementService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/user/login": {
+      "post": {
+        "operationId": "UserManagementService_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/managementLoginResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/managementLoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserManagementService"
+        ]
+      }
+    },
+    "/v1/user/payment-method": {
+      "get": {
+        "operationId": "UserManagementService_GetPaymentMethod",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/managementGetPaymentMethodResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "UserManagementService"
+        ]
+      }
+    },
+    "/v1/user/profile": {
+      "get": {
+        "operationId": "UserManagementService_GetProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/managementGetProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "UserManagementService"
+        ]
+      },
+      "put": {
+        "operationId": "UserManagementService_UpdateProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/managementUpdateProfileRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/managementUpdateProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserManagementService"
+        ]
+      }
+    },
+    "/v1/user/register": {
+      "post": {
+        "operationId": "UserManagementService_Register",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/managementRegisterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/managementRegisterRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserManagementService"
+        ]
+      }
+    },
+    "/v1/user/update-password": {
+      "put": {
+        "operationId": "UserManagementService_UpdatePassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/managementUpdatePasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/managementUpdatePasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserManagementService"
+        ]
+      }
+    },
+    "/v1/user/verify-otp": {
+      "put": {
+        "operationId": "UserManagementService_VerifyOTP",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/managementVerifyOTPResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/managementVerifyOTPRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserManagementService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "managementGetPaymentMethodResponse": {
+      "type": "object"
+    },
+    "managementGetProfileResponse": {
+      "type": "object"
+    },
+    "managementLoginRequest": {
+      "type": "object"
+    },
+    "managementLoginResponse": {
+      "type": "object"
+    },
+    "managementRegisterRequest": {
+      "type": "object"
+    },
+    "managementRegisterResponse": {
+      "type": "object"
+    },
+    "managementUpdatePasswordRequest": {
+      "type": "object"
+    },
+    "managementUpdatePasswordResponse": {
+      "type": "object"
+    },
+    "managementUpdateProfileRequest": {
+      "type": "object"
+    },
+    "managementVerifyOTPRequest": {
+      "type": "object"
+    },
+    "managementVerifyOTPResponse": {
+      "type": "object"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

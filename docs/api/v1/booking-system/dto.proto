@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package v1.booking.system;
+
+option go_package = "./api/v1/booking-system;bookingsystem";
+
+import "api/v1/booking-system/enums.proto";
+
+message Address {
+    message Location {
+        float latitude = 1;
+        float longitude = 2;
+    }
+    message Geometry {
+        Location location = 1;
+    }
+    string formatted = 1;
+    Geometry geometry = 2;
+    string place_id = 3;
+    repeated v1.booking.system.AddressType types = 4;
+}
+
+message BookingData {
+    string booking_id = 1;
+    string customer_id = 2;
+    string driver_id = 3;
+    string call_center_id = 4;
+    Address pickup_address = 5;
+    Address destination_address = 6;
+    float trip_fare = 7;
+    int64 pickup_time = 8;
+    v1.booking.system.BookingStatus booking_status = 9;
+    v1.booking.system.PaymentMethod payment_method = 10;
+    v1.booking.system.BookingSource booking_source = 11;
+    int64 created_time = 12;
+    int64 update_time = 13;
+}

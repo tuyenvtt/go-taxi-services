@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package v1.booking.system;
+
+option go_package = "./api/v1/booking-system;bookingsystem";
+
+import "api/v1/booking-system/dto.proto";
+import "api/v1/booking-system/enums.proto";
+import "google/api/annotations.proto";
+
+service BookingSystemService {
+  rpc Book (BookRequest) returns (BookResponse) {
+    option (google.api.http) = {
+      post: "/v1/booking/book"
+      body: "*"
+    };
+  }
+  rpc ScheduledBook (ScheduledBookRequest) returns (ScheduledBookResponse) {
+    option (google.api.http) = {
+      post: "/v1/booking/scheduled/book"
+      body: "*"
+    };
+  }
+  rpc GetBooking(GetBookingRequest) returns (GetBookingResponse) {
+    option (google.api.http) = {
+      get: "/v1/booking/{booking_id}"
+    };
+  }
+  rpc Cancel(CancelRequest) returns (CancelRequest) {
+    option (google.api.http) = {
+      put: "/v1/booking/cancel"
+      body: "*"
+    };
+  }
+  rpc ConfirmArrival(ConfirmArrivalRequest) returns (ConfirmArrivalRequest) {
+    option (google.api.http) = {
+      put: "/v1/booking/confirm-arrival"
+      body: "*"
+    };
+  }
+  rpc ConfirmReceipt(ConfirmReceiptRequest) returns (ConfirmReceiptRequest) {
+    option (google.api.http) = {
+      put: "/v1/booking/confirm-receipt"
+      body: "*"
+    };
+  }
+  rpc ConfirmComplete(ConfirmCompleteRequest) returns (ConfirmCompleteRequest) {
+    option (google.api.http) = {
+      put: "/v1/booking/confirm-complete"
+      body: "*"
+    };
+  }
+  rpc GetBookingStatus(GetBookingStatusRequest) returns (GetBookingStatusResponse) {
+    option (google.api.http) = {
+      get: "/v1/booking/status/{booking_id}"
+    };
+  }
+  rpc GetRecentBooking(GetRecentBookingRequest) returns (GetRecentBookingResponse) {
+    option (google.api.http) = {
+      get: "/v1/booking/recent"
+    };
+  }
+  rpc GetBookingHistory(GetBookingHistoryRequest) returns (GetBookingHistoryResponse) {
+    option (google.api.http) = {
+      get: "/v1/booking/history"
+    };
+  }
+  rpc GetVehiclePricing(GetVehiclePricingRequest) returns (GetVehiclePricingResponse) {
+    option (google.api.http) = {
+      get: "/v1/booking/vehicle-pricing"
+    };
+  }
+}
+
+message BookRequest {
+  v1.booking.system.Address pickup_address = 1;
+  v1.booking.system.Address destination_address = 2;
+  float trip_fare = 3;
+  v1.booking.system.PaymentMethod payment_method = 4;
+}
+
+message BookResponse {
+  v1.booking.system.BookingData booking_data = 1;
+}
+
+message ScheduledBookRequest {
+  string pickup_address = 1;
+  string destination_address = 2;
+  float trip_fare = 3;
+  v1.booking.system.PaymentMethod payment_method = 4;
+  int64 pickup_time = 5;
+}
+
+message ScheduledBookResponse {
+  v1.booking.system.BookingData booking_data = 1;
+}
+
+message GetBookingRequest {
+  string booking_id = 1;
+}
+
+message GetBookingResponse {
+  v1.booking.system.BookingData booking_data = 1;
+}
+
+message CancelRequest {
+  string booking_id = 1;
+}
+
+message CancelResponse {
+
+}
+
+// driver confirm so driver_id from session
+message ConfirmArrivalRequest {
+  string booking_id = 1;
+}
+
+message ConfirmArrivalResponse {
+
+}
+
+message ConfirmReceiptRequest {
+  string booking_id = 1;
+}
+
+message ConfirmReceiptResponse {
+
+}
+
+message ConfirmCompleteRequest {
+  string booking_id = 1;
+}
+
+message ConfirmCompleteResponse {
+
+}
+
+message GetBookingStatusRequest {
+  string booking_id = 1;
+}
+
+message GetBookingStatusResponse {
+  v1.booking.system.BookingStatus booking_status = 1;
+}
+
+message GetRecentBookingRequest {
+
+}
+
+message GetRecentBookingResponse {
+  repeated string recent_detinations = 1;
+}
+
+message GetBookingHistoryRequest {
+  int32 page = 1;
+  int32 offset = 2;
+}
+
+message GetBookingHistoryResponse {
+  repeated v1.booking.system.BookingData history = 1;
+}
+
+message GetVehiclePricingRequest {
+
+}
+
+message GetVehiclePricingResponse {
+
+}
