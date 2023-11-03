@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { verifyOTP } = require('./verify_otp');
 const { encrypt } = require('@common/utils/crypto');
@@ -6,7 +7,7 @@ const { redis } = require('@common/database/redis');
 const { generateOTP } = require('@common/utils/otp');
 const { getConfig } = require('@common/utils/config');
 const Customer = require('@services/user-management/models/Customer');
-const { OK, NOT_FOUND, INTERNAL_SERVER_ERROR } = require('@common/constants/codes');
+const { OK, NOT_FOUND, UNAUTHORIZED, INTERNAL_SERVER_ERROR } = require('@common/constants/codes');
 const { TokenAction } = require('@common/constants/user');
 const { validate } = require('@common/validator/validator');
 
@@ -51,7 +52,7 @@ class LoginController {
       return;
     }
 
-    const { phone } = req.body;
+    const { phone, password } = req.body;
 
     try {
       const customer = await Customer.findOne({
@@ -68,13 +69,35 @@ class LoginController {
         return;
       }
 
-      const otp = generateOTP();
-      const prefix = getConfig('common.redis.otp');
-      const token = encrypt(JSON.stringify({ otp, action: TokenAction.Login, created_time: Date.now() }), getConfig('common.secret.otp'));
-      await redis.set(`${prefix}${phone}`, token, 'EX', 10 * 60); // 10 minutes
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(password, salt);
 
-      // TODO: implement send otp to phone or mail here
-      res.status(OK).json({ otp, note: 'temporary return' }); // TODO: temporary return to response, user only receives otp from phone or mail
+      if (hashedPassword !== customer.password) {
+        res.status(error.status).json({
+          error: {
+            status: UNAUTHORIZED,
+            message: 'Phone or password invalid'
+          }
+        });
+        return;
+      }
+
+      const payload = {
+        id: customer.customer_id,
+        phone: customer.phone,
+        eat: Date.now() + 24 * 60 * 60 * 1000
+      };
+
+      const secretKey = getConfig('common.secret.authen');
+      const token = jwt.sign(payload, secretKey);
+
+      // const otp = generateOTP();
+      // const prefix = getConfig('common.redis.otp');
+      // const token = encrypt(JSON.stringify({ otp, action: TokenAction.Login, created_time: Date.now() }), getConfig('common.secret.otp'));
+      // await redis.set(`${prefix}${phone}`, token, 'EX', 10 * 60); // 10 minutes
+
+      res.cookie('token', token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+      res.status(OK).json({ message: "Success", token });
     } catch (error) {
       this.logger.error('[Customer][Login] error ' + error);
       res.status(INTERNAL_SERVER_ERROR).json({

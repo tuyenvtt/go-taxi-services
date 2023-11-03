@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable camelcase */
+const bcrypt = require('bcryptjs');
 const { verifyOTP } = require('./verify_otp');
 const { redis } = require('@common/database/redis');
 const { encrypt } = require('@common/utils/crypto');
@@ -60,13 +61,16 @@ class RegisterController {
       return;
     }
 
-    const { full_name, email, phone } = req.body;
+    const { full_name, email, phone, password } = req.body;
 
     try {
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(password, salt);
+
       // TODO: try catch all block code call to db
       const [customer, created] = await Customer.findOrCreate({
         where: { phone },
-        defaults: { full_name, email, phone }
+        defaults: { full_name, email, phone, password: hashedPassword }
       });
       if (!created) {
         if (customer.verified) {
