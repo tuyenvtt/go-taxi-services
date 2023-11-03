@@ -3,6 +3,7 @@
 # Trước khi chạy cần cài đặt postgres@14 và redis
 #  - https://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/
 #  - https://redis.io/docs/install/install-redis/install-redis-on-mac-os/
+# Postgres cần tạo database gotaxi với user postgres và password rỗng
 
 # Chạy service user-management với port 8080
 run-user-mangement:
